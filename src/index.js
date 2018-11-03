@@ -7,6 +7,8 @@ const fs = require('fs')
 const { exec } = require('child_process')
 const dotenv = require('dotenv')
 const path = require('path')
+const cors = require('cors')({ origin: true })
+const { text } = require('body-parser')
 
 const config = require('./config')
 
@@ -15,22 +17,25 @@ const ROOT = path.resolve(__dirname, '../')
 dotenv.config({ path: path.join(ROOT, '.env') })
 
 polka()
-  .use(morgan('dev'))
+  .use(morgan('dev'), cors, text({ type: 'text/plain' }))
   .get('/', (_req, res) => {
     send(res, 200, 'OK')
   })
   .post('/print', async (req, res) => {
     const content = req.body
-    const filePath = path.join(ROOT, '../storage/logs', Date.now().toString())
+    const filePath = path.join(ROOT, '/storage/logs', Date.now().toString())
     const printerPath = config.PRINTER_PATH
 
     try {
       fs.writeFileSync(filePath, content)
-      await exec(`copy /n ${filePath} ${printerPath}`)
+
+      const command = `copy /b ${filePath} ${printerPath}`
+      
+      await exec(command)
 
       const message = `filepath: ${filePath} printed successfully`
 
-      res.send(res, 200, { message }, { 'Content-Type': 'application/json' })
+      send(res, 200, JSON.stringify({ message }), { 'Content-Type': 'application/json' })
     } catch (error) {
       console.error('something wrong :(', error)
       return send(
