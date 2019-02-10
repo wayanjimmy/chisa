@@ -1,4 +1,4 @@
-# Chisa [![Build Status](https://travis-ci.org/wayanjimmy/chisa.svg?branch=master)](https://travis-ci.org/wayanjimmy/chisa) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+# Chisa [![Build Status](https://travis-ci.org/wayanjimmy/chisa.svg?branch=master)](https://travis-ci.org/wayanjimmy/chisa) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![Greenkeeper badge](https://badges.greenkeeper.io/wayanjimmy/chisa.svg)](https://greenkeeper.io/)
 Print server berbasis web untuk perangkat lunak minipos
 
 ## Spesifikasi
