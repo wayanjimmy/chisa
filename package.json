@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test jest"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,18 @@
     "dotenv": "^6.1.0",
     "morgan": "^1.9.1",
     "polka": "^0.5.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "globals": {
+      "__DEV__": true
+    }
+  },
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "supertest": "^3.4.2"
   }
 }
